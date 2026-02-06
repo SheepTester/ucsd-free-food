@@ -71,7 +71,7 @@ function getConsensus (events: EventObject[]): EventObject {
     end,
     location,
     // use oldest image, which might be the post if available
-    imageUrl: events.findLast(event => event.imageUrl)?.imageUrl ?? null,
+    // imageUrl: events.findLast(event => event.imageUrl)?.imageUrl ?? null,
     // link to latest post, or latest story if no posts
     postId:
       events.find(event => event.postId.startsWith('post/'))?.postId ??
@@ -159,7 +159,7 @@ export function EventList ({ events, mode }: EventListProps) {
               : event.start.getTime() + DEFAULT_EVENT_LENGTH) <= now.now
       )
     )
-    return mode === 'past' ? days.toReversed().slice(0, 7) : days
+    return mode === 'past' ? days.toReversed() : days
   }, [now.now, mode])
 
   return (

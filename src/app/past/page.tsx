@@ -1,15 +1,9 @@
 import { EventList } from '../../components/EventList'
-import { getEvents } from '../../util/getEvents'
+import { useEvents } from '../../lib/useEvents'
 import styles from '../page.module.css'
 
-const fmt = new Intl.DateTimeFormat('en-US', {
-  timeZone: 'America/Los_Angeles',
-  dateStyle: 'long',
-  timeStyle: 'long'
-})
-
-export default async function Home () {
-  const events = await getEvents()
+export default function Home () {
+  const events = useEvents('2050-01-01')
 
   return (
     <>
@@ -21,9 +15,7 @@ export default async function Home () {
         </span>
       </h1>
       <p className={styles.description}>
-        Page generated {fmt.format(new Date())}. Because I'm hitting Vercel's
-        free plan limits, only the events from the past week are visible for
-        now. <a href='../'>See upcoming events.</a>
+        <a href='../'>See upcoming events.</a>
       </p>
       <EventList events={events} mode='past' />
     </>

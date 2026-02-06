@@ -1,15 +1,10 @@
 import { EventList } from '../components/EventList'
-import { getEvents } from '../util/getEvents'
+import { today } from '../lib/api'
+import { useEvents } from '../lib/useEvents'
 import styles from './page.module.css'
 
-const fmt = new Intl.DateTimeFormat('en-US', {
-  timeZone: 'America/Los_Angeles',
-  dateStyle: 'long',
-  timeStyle: 'long'
-})
-
-export default async function Home () {
-  const events = await getEvents()
+export default function Home () {
+  const events = useEvents(today)
 
   return (
     <>
@@ -43,8 +38,7 @@ export default async function Home () {
         </a>{' '}
         if I'm missing any events. Check out the code on{' '}
         <a href='https://github.com/SheepTester/ucsd-free-food/'>GitHub</a>.
-        Made by Chaitya and <a href='https://sheeptester.github.io/'>Sean</a>.
-        Page generated {fmt.format(new Date())}.{' '}
+        Made by Chaitya and <a href='https://sheeptester.github.io/'>Sean</a>.{' '}
         <a href='./past/'>See past events.</a>
       </p>
       <EventList events={events} mode='upcoming' />

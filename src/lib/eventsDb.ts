@@ -1,5 +1,3 @@
-import { MongoClient } from 'mongodb'
-
 type GeminiResult = {
   provided: string[]
   location: string

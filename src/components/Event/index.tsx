@@ -1,6 +1,4 @@
-import Link from 'next/link'
 import styles from './styles.module.css'
-import Image from 'next/image'
 
 export type EventObject = {
   mongoDbId: string
@@ -56,7 +54,7 @@ export function Event ({ event, consensusInfo, now }: EventProps) {
     </>
   )
   const image = event.imageUrl ? (
-    <Image
+    <img
       src={event.imageUrl}
       alt={`preview of Instagram source image`}
       title={hoverText}
@@ -85,9 +83,9 @@ export function Event ({ event, consensusInfo, now }: EventProps) {
       <div className={styles.rhs}>
         <h3 className={styles.title}>
           {event.referencedUrl ? (
-            <Link href={event.referencedUrl} rel='noreferrer'>
+            <a href={event.referencedUrl} rel='noreferrer'>
               {text}
-            </Link>
+            </a>
           ) : (
             text
           )}
@@ -128,16 +126,13 @@ export function Event ({ event, consensusInfo, now }: EventProps) {
         ) : (
           <p className={styles.credit}>
             From a{' '}
-            <Link href={url} rel='noreferrer'>
+            <a href={url} rel='noreferrer'>
               {postType}
-            </Link>{' '}
+            </a>{' '}
             by{' '}
-            <Link
-              href={`https://www.instagram.com/${username}/`}
-              rel='noreferrer'
-            >
+            <a href={`https://www.instagram.com/${username}/`} rel='noreferrer'>
               @{username}
-            </Link>
+            </a>
             {consensusInfo?.updateTime
               ? ` on ${fmtPT.format(consensusInfo.updateTime)}`
               : ''}
@@ -148,9 +143,9 @@ export function Event ({ event, consensusInfo, now }: EventProps) {
       </div>
       <div className={styles.lhs}>
         {url ? (
-          <Link href={url} rel='noreferrer'>
+          <a href={url} rel='noreferrer'>
             {image}
-          </Link>
+          </a>
         ) : (
           image
         )}

@@ -1,5 +1,5 @@
-import { EventObject } from '@/components/Event'
-import { eventsPromise } from '@/lib/eventsDb'
+import { EventObject } from '../components/Event'
+import { eventsPromise } from '../lib/eventsDb'
 
 export async function getEvents (): Promise<EventObject[]> {
   const db = await eventsPromise

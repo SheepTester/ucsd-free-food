@@ -1,4 +1,3 @@
-import { Fragment } from 'react'
 import { Event, EventObject } from '../Event'
 import styles from './styles.module.css'
 

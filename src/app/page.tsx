@@ -1,10 +1,6 @@
+import { EventList } from '../components/EventList'
+import { getEvents } from '../util/getEvents'
 import styles from './page.module.css'
-import { EventList } from '@/components/EventList'
-import Link from 'next/link'
-import { getEvents } from '@/util/getEvents'
-
-/** cache for 5 min */
-export const revalidate = 300
 
 const fmt = new Intl.DateTimeFormat('en-US', {
   timeZone: 'America/Los_Angeles',
@@ -29,29 +25,27 @@ export default async function Home () {
         Instagram. I scan them with an LLM to get event information, but it's
         wrong like more than half the time (a.k.a. correct some of the time :D),
         so{' '}
-        <Link href='https://github.com/SheepTester/sgy-sgy/issues'>
+        <a href='https://github.com/SheepTester/ucsd-free-food/issues'>
           prompt engineering ideas
-        </Link>{' '}
+        </a>{' '}
         would be appreciated. If you don't trust AI (which is fair), I also have
         an{' '}
-        <Link href='https://sheep.thingkingland.app/as-finance/'>
+        <a href='https://sheep.thingkingland.app/as-finance/'>
           <strong>alternate list of free food</strong>
-        </Link>{' '}
+        </a>{' '}
         that clubs are ordering using your tuition, pulled directly from
         Associated Students. Let's get your tuition's worth!
       </p>
       <p className={styles.description}>
         Message{' '}
-        <Link href='https://www.instagram.com/eventcollatorucsd/'>
+        <a href='https://www.instagram.com/eventcollatorucsd/'>
           @eventcollatorucsd
-        </Link>{' '}
+        </a>{' '}
         if I'm missing any events. Check out the code on{' '}
-        <Link href='https://github.com/SheepTester/sgy-sgy/tree/master/ig'>
-          GitHub
-        </Link>
-        . Made by Chaitya and{' '}
-        <Link href='https://sheeptester.github.io/'>Sean</Link>. Page generated{' '}
-        {fmt.format(new Date())}. <Link href='/past'>See past events.</Link>
+        <a href='https://github.com/SheepTester/ucsd-free-food/'>GitHub</a>.
+        Made by Chaitya and <a href='https://sheeptester.github.io/'>Sean</a>.
+        Page generated {fmt.format(new Date())}.{' '}
+        <a href='./past/'>See past events.</a>
       </p>
       <EventList events={events} mode='upcoming' />
     </>

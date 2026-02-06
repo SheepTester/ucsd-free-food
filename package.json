@@ -1,24 +1,32 @@
 {
-  "name": "freefood",
-  "version": "0.1.0",
-  "private": true,
+  "name": "ucsd-free-food",
+  "version": "1.0.0",
+  "description": "Frontend for UCSD free food event calendar (now on GitHub Pages because I hit the Vercel free plan limits)",
   "scripts": {
-    "dev": "next dev --turbopack",
-    "build": "next build",
-    "start": "next start",
-    "lint": "next lint"
+    "build": "cp -a static/. dist/ && esbuild --bundle src/index.tsx --outdir=dist --minify && find dist/ -type f | sed 's/dist\\//https:\\/\\/sheeptester.github.io\\/ucsd-classrooms\\//' > dist/sitemap.txt",
+    "clean": "rm -rf dist/",
+    "dev": "esbuild --bundle src/index.tsx --outdir=static --servedir=static --sourcemap"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SheepTester/ucsd-free-food.git"
+  },
+  "keywords": [],
+  "author": "SheepTester",
+  "license": "MIT",
+  "type": "module",
+  "bugs": {
+    "url": "https://github.com/SheepTester/ucsd-free-food/issues"
+  },
+  "homepage": "https://github.com/SheepTester/ucsd-free-food#readme",
   "dependencies": {
-    "@vercel/analytics": "^1.5.0",
-    "mongodb": "^6.16.0",
-    "next": "^15",
-    "react": "^19",
-    "react-dom": "^19"
+    "react": "^19.2.4",
+    "react-dom": "^19.2.4"
   },
   "devDependencies": {
-    "@types/node": "^20",
-    "@types/react": "^19",
-    "@types/react-dom": "^19",
-    "typescript": "^5"
+    "@types/react": "^19.2.13",
+    "@types/react-dom": "^19.2.3",
+    "esbuild": "^0.27.3",
+    "prettierx": "^0.19.0"
   }
 }

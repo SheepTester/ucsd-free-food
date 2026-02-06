@@ -1,9 +1,7 @@
-'use client'
-
 import { Fragment, useEffect, useMemo, useState } from 'react'
 import { DEFAULT_EVENT_LENGTH, EventObject } from '../Event'
-import styles from './styles.module.css'
 import { EventCard } from '../EventCard'
+import styles from './styles.module.css'
 
 const fmt = new Intl.DateTimeFormat('en-CA', {
   timeZone: 'America/Los_Angeles',

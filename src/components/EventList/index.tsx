@@ -71,7 +71,7 @@ function getConsensus (events: EventObject[]): EventObject {
     end,
     location,
     // use oldest image, which might be the post if available
-    // imageUrl: events.findLast(event => event.imageUrl)?.imageUrl ?? null,
+    imageUrl: events.findLast(event => event.imageUrl)?.imageUrl ?? null,
     // link to latest post, or latest story if no posts
     postId:
       events.find(event => event.postId.startsWith('post/'))?.postId ??

@@ -61,6 +61,8 @@ export function useEvents (onOrAfter?: string): EventObject[] {
                     )
                   )
                   : null,
+                // TODO: server should indicate whether image exists
+                imageUrl: `${API_BASE}/${event._id}/img.webp`,
                 postTimestamp: event.postTimestamp
                   ? new Date(event.postTimestamp)
                   : null,

@@ -1,4 +1,3 @@
-import { API_BASE } from '../../lib/api'
 import styles from './styles.module.css'
 
 export type EventObject = {
@@ -11,6 +10,7 @@ export type EventObject = {
   start: Date
   /** UTC time */
   end: Date | null
+  imageUrl: string | null
   /** PT */
   postTimestamp: Date | null
   caption: string
@@ -53,9 +53,9 @@ export function Event ({ event, consensusInfo, now }: EventProps) {
       <span className={styles.faded}>Free</span> {event.freeStuff.join(', ')}
     </>
   )
-  const image = (
+  const image = event.imageUrl ? (
     <img
-      src={`${API_BASE}/${event.mongoDbId.split(':')[1]}/img.webp`}
+      src={event.imageUrl}
       alt={`preview of Instagram source image`}
       title={hoverText}
       loading='lazy'
@@ -63,6 +63,10 @@ export function Event ({ event, consensusInfo, now }: EventProps) {
       width={80}
       height={100}
     />
+  ) : (
+    <div className={`${styles.image}`} title={hoverText}>
+      View source
+    </div>
   )
   const parts = event.end
     ? fmt.formatRangeToParts(event.start, event.end)

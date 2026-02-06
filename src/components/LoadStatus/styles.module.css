@@ -1,0 +1,18 @@
+.status {
+  border: 1px solid magenta;
+  padding: 20px;
+  border-radius: 15px;
+  max-width: 900px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.error {
+  border-color: oklch(63.7% 0.237 25.331);
+  background-color: oklch(63.7% 0.237 25.331 / 10%);
+}
+
+.loading {
+  border-color: oklch(62.3% 0.214 259.815);
+  background-color: oklch(62.3% 0.214 259.815 / 10%);
+}

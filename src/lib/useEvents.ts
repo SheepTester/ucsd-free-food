@@ -20,16 +20,19 @@ type ScrapedEvent = Omit<GeminiResult, 'provided'> & {
   i?: true
 }
 
+export type LoadState = 'loading' | 'error' | 'done'
+
 export type UseEventsOptions = {
   // YYYY-MM-DD
   onOrAfter?: string
   onOrBefore?: string
 }
-export function useEvents ({
-  onOrAfter,
-  onOrBefore
-}: UseEventsOptions): EventObject[] {
+export function useEvents ({ onOrAfter, onOrBefore }: UseEventsOptions): {
+  events: EventObject[]
+  state: LoadState
+} {
   const [events, setEvents] = useState<EventObject[]>([])
+  const [state, setState] = useState<LoadState>('loading')
 
   useEffect(() => {
     const params = new URLSearchParams()
@@ -87,8 +90,13 @@ export function useEvents ({
             ]
           })
         )
+        setState('done')
+      })
+      .catch(error => {
+        console.error('Failed to get events', error)
+        setState('error')
       })
   }, [onOrAfter, onOrBefore])
 
-  return events
+  return { events, state }
 }

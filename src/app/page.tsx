@@ -1,10 +1,11 @@
 import { EventList } from '../components/EventList'
+import { LoadStatus } from '../components/LoadStatus'
 import { today } from '../lib/api'
 import { useEvents } from '../lib/useEvents'
 import styles from './page.module.css'
 
 export default function Home () {
-  const events = useEvents({ onOrAfter: today })
+  const { events, state } = useEvents({ onOrAfter: today })
 
   return (
     <>
@@ -41,6 +42,7 @@ export default function Home () {
         Made by Chaitya and <a href='https://sheeptester.github.io/'>Sean</a>.{' '}
         <a href='./past/'>See past events.</a>
       </p>
+      <LoadStatus state={state} />
       <EventList events={events} mode='upcoming' />
     </>
   )

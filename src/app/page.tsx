@@ -4,7 +4,7 @@ import { useEvents } from '../lib/useEvents'
 import styles from './page.module.css'
 
 export default function Home () {
-  const events = useEvents(today)
+  const events = useEvents({ onOrAfter: today })
 
   return (
     <>

@@ -1,9 +1,10 @@
 import { EventList } from '../../components/EventList'
+import { like30DaysAgo, today } from '../../lib/api'
 import { useEvents } from '../../lib/useEvents'
 import styles from '../page.module.css'
 
 export default function Home () {
-  const events = useEvents('2050-01-01')
+  const events = useEvents({ onOrBefore: today, onOrAfter: like30DaysAgo })
 
   return (
     <>

@@ -16,13 +16,30 @@ type ScrapedEvent = Omit<GeminiResult, 'provided'> & {
   caption?: string
   sourceId: string
   url: string | null
+  /** Whether it has image data */
+  i?: true
 }
 
-export function useEvents (onOrAfter?: string): EventObject[] {
+export type UseEventsOptions = {
+  // YYYY-MM-DD
+  onOrAfter?: string
+  onOrBefore?: string
+}
+export function useEvents ({
+  onOrAfter,
+  onOrBefore
+}: UseEventsOptions): EventObject[] {
   const [events, setEvents] = useState<EventObject[]>([])
 
   useEffect(() => {
-    fetch(`${API_BASE}/${onOrAfter ? '?onOrAfter=' + onOrAfter : ''}`)
+    const params = new URLSearchParams()
+    if (onOrAfter) {
+      params.set('onOrAfter', onOrAfter)
+    }
+    if (onOrBefore) {
+      params.set('onOrBefore', onOrBefore)
+    }
+    fetch(`${API_BASE}/?${params}`)
       .then(r => r.json())
       .then((rawEvents: ScrapedEvent[]) => {
         setEvents(
@@ -61,8 +78,7 @@ export function useEvents (onOrAfter?: string): EventObject[] {
                     )
                   )
                   : null,
-                // TODO: server should indicate whether image exists
-                imageUrl: `${API_BASE}/${event._id}/img.webp`,
+                imageUrl: event.i ? `${API_BASE}/${event._id}/img.webp` : null,
                 postTimestamp: event.postTimestamp
                   ? new Date(event.postTimestamp)
                   : null,
@@ -72,7 +88,7 @@ export function useEvents (onOrAfter?: string): EventObject[] {
           })
         )
       })
-  }, [onOrAfter])
+  }, [onOrAfter, onOrBefore])
 
   return events
 }

@@ -20,7 +20,6 @@ type ScrapedEvent = Omit<GeminiResult, 'provided'> & {
 
 export function useEvents (onOrAfter?: string): EventObject[] {
   const [events, setEvents] = useState<EventObject[]>([])
-  console.log(events)
 
   useEffect(() => {
     fetch(`${API_BASE}/${onOrAfter ? '?onOrAfter=' + onOrAfter : ''}`)
@@ -71,7 +70,7 @@ export function useEvents (onOrAfter?: string): EventObject[] {
           })
         )
       })
-  }, [])
+  }, [onOrAfter])
 
   return events
 }

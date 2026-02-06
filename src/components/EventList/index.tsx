@@ -160,7 +160,7 @@ export function EventList ({ events, mode }: EventListProps) {
       )
     )
     return mode === 'past' ? days.toReversed() : days
-  }, [now.now, mode])
+  }, [events, now.now, mode])
 
   return (
     <div className={styles.list}>

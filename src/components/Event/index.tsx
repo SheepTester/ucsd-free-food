@@ -55,7 +55,7 @@ export function Event ({ event, consensusInfo, now }: EventProps) {
   )
   const image = (
     <img
-      src={`${API_BASE}/${event.mongoDbId}/img.webp`}
+      src={`${API_BASE}/${event.mongoDbId.split(':')[1]}/img.webp`}
       alt={`preview of Instagram source image`}
       title={hoverText}
       loading='lazy'

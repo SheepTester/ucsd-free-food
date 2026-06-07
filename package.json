@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "Frontend for UCSD free food event calendar (now on GitHub Pages because I hit the Vercel free plan limits)",
   "scripts": {
-    "build": "cp -a static/. dist/ && esbuild --bundle src/index.tsx --outdir=dist --minify && find dist/ -type f | sed 's/dist\\//https:\\/\\/sheeptester.github.io\\/ucsd-classrooms\\//' > dist/sitemap.txt",
+    "build": "cp -a static/. dist/ && esbuild --bundle src/index.tsx --outdir=dist --minify && find dist/ -type f | sed 's/dist\\//https:\\/\\/sheeptester.github.io\\/ucsd-free-food\\//' > dist/sitemap.txt",
     "clean": "rm -rf dist/",
     "dev": "esbuild --bundle src/index.tsx --outdir=static --servedir=static --sourcemap"
   },
